@@ -1,6 +1,10 @@
 package com.limadev.pedidos.entities.enums;
 
 public enum Tipo {
-	INGREDIENTE, LANCHE;
+	INGREDIENTE("INGREDIENTE"), LANCHE("LANCHE");
+
+	Tipo(String string) {
+		// TODO Auto-generated constructor stub
+	}
 
 }

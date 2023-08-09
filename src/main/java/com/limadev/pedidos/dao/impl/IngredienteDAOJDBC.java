@@ -24,11 +24,12 @@ public class IngredienteDAOJDBC implements IngredienteDAO{
 	@Override
 	public void insert(Ingrediente obj) {
 		PreparedStatement st = null;
-		String sql = "INSERT INTO t_item (Name) VALUES (?)";
+		String sql = "INSERT INTO t_item (Name, tipo) VALUES (?,?)";
 		try {
 			st = conn.prepareStatement(sql);
 			st.setString(1, obj.getName());
-			st.execute();
+			st.setString(2, obj.getTipo().toString());
+			st.executeUpdate();
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		}finally {

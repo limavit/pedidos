@@ -7,6 +7,7 @@ import java.util.Scanner;
 import com.limadev.pedidos.dao.DAOFactory;
 import com.limadev.pedidos.dao.IngredienteDAO;
 import com.limadev.pedidos.entities.Ingrediente;
+import com.limadev.pedidos.entities.enums.Tipo;
 
 
 public class Program {
@@ -21,6 +22,9 @@ public class Program {
 		tela = sc.nextInt();
 		String nameIngrediente;
 		List<Ingrediente> ingredientes = ingredienteDao.findAll();
+		Ingrediente ing1 = new Ingrediente("Teste", Tipo.INGREDIENTE);
+		System.out.println(Tipo.INGREDIENTE.toString());
+		ingredienteDao.insert(ing1);
 
 
 		/*
