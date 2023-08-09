@@ -1,13 +1,11 @@
 package com.limadev.pedidos.tela;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.limadev.pedidos.dao.DAOFactory;
 import com.limadev.pedidos.dao.IngredienteDAO;
 import com.limadev.pedidos.entities.Ingrediente;
-import com.limadev.pedidos.entities.enums.Tipo;
 
 
 public class Program {
@@ -16,15 +14,14 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Cadastros: ");
 		IngredienteDAO ingredienteDao = DAOFactory.createIngredienteDao();
-		int tela;
+		ingredienteDao.insert(new Ingrediente("OVO", "INGREDIENTE"));
+		//int tela;
 
-		System.out.println("Para Cadastrar ingrediente(1), produto(2)");
-		tela = sc.nextInt();
-		String nameIngrediente;
+		//System.out.println("Para Cadastrar ingrediente(1), produto(2)");
+		//tela = sc.nextInt();
+		//String nameIngrediente;
 		List<Ingrediente> ingredientes = ingredienteDao.findAll();
-		Ingrediente ing1 = new Ingrediente("Teste", Tipo.INGREDIENTE);
-		System.out.println(Tipo.INGREDIENTE.toString());
-		ingredienteDao.insert(ing1);
+		
 
 
 		/*
@@ -53,11 +50,13 @@ public class Program {
 		 * 
 		 * }
 		 */
+		
 
 		System.out.println("Ingredientes cadastrados: ");
 		for (Ingrediente ingrediente : ingredientes) {
-			System.out.println("Id: " + ingrediente.getId() + "\t Nome: " + ingrediente.getName());
+			System.out.println("Id: " + ingrediente.getId() + "\t Nome: " + ingrediente.getName() + "\t Tipo: " + ingrediente.getTipo());
 		}
+		
 
 		sc.close();
 

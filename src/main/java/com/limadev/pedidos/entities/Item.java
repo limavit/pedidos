@@ -1,16 +1,15 @@
 package com.limadev.pedidos.entities;
 
-import com.limadev.pedidos.entities.enums.Tipo;
 
 public class Item {
 	private Integer id;
 	private String name;
-	private Tipo tipo;
+	private String tipo;
 	public Item(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-	public Item(String name, Tipo tipo) {		
+	public Item(String name, String tipo) {		
 		this.name = name;
 		this.tipo = tipo;
 	}
@@ -26,10 +25,11 @@ public class Item {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Tipo getTipo() {
+	
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(Tipo tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	@Override

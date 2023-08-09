@@ -84,7 +84,7 @@ public class IngredienteDAOJDBC implements IngredienteDAO{
 	public List<Ingrediente> findAll() {
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		String sql = "SELECT id, name FROM t_item";
+		String sql = "SELECT id, name, tipo FROM t_item";
 		List<Ingrediente> ingredientes = new ArrayList<>();
 		try {
 			st = conn.prepareStatement(sql);
@@ -134,7 +134,8 @@ public class IngredienteDAOJDBC implements IngredienteDAO{
 	private Ingrediente instanciateIngrediente(ResultSet rs) throws SQLException {
 		Ingrediente obj = new Ingrediente(1, " ");
 		obj.setId(rs.getInt("id"));
-		obj.setName(rs.getString("name"));
+		obj.setName(rs.getString("name"));		
+		obj.setTipo(rs.getString("tipo"));
 		return obj;
 	}
 	
