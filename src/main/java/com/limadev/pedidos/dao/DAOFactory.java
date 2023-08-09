@@ -1,5 +1,6 @@
 package com.limadev.pedidos.dao;
 
+import com.limadev.pedidos.dao.impl.EstoqueDAOJDBC;
 import com.limadev.pedidos.dao.impl.IngredienteDAOJDBC;
 import com.limadev.pedidos.dao.impl.ItemDAOJDBC;
 import com.limadev.pedidos.dao.impl.LancheDAOJDBC;
@@ -15,6 +16,9 @@ public class DAOFactory {
 	}
 	public static IngredienteDAO createIngredienteDao() {
 		return new IngredienteDAOJDBC(DB.getConnection());
+	}
+	public static EstoqueDAO createEstoqueDao() {
+		return new EstoqueDAOJDBC(DB.getConnection());
 	}
 
 }
