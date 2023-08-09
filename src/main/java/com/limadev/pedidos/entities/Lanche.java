@@ -9,6 +9,9 @@ public class Lanche extends Item{
 		super(id, name);
 		// TODO Auto-generated constructor stub
 	}
+	public Lanche(String name, String tipo) {
+		super(name, tipo);
+	}
 
 	public void addIngrediente(Ingrediente ingrediente) {
 		ingredientes.add(ingrediente);

@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -84,7 +83,7 @@ public class IngredienteDAOJDBC implements IngredienteDAO{
 	public List<Ingrediente> findAll() {
 		PreparedStatement st = null;
 		ResultSet rs = null;
-		String sql = "SELECT id, name, tipo FROM t_item";
+		String sql = "SELECT id, name, tipo FROM t_item WHERE tipo = 'INGREDIENTE'";
 		List<Ingrediente> ingredientes = new ArrayList<>();
 		try {
 			st = conn.prepareStatement(sql);
