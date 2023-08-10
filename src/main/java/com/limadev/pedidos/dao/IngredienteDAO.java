@@ -9,6 +9,7 @@ public interface IngredienteDAO {
 	void update(Ingrediente obj, String newName);
 	void deleteById(Integer id);
 	Ingrediente findByName(String name);
+	Integer countId(Integer id);
 	List<Ingrediente> findAll();
 
 }

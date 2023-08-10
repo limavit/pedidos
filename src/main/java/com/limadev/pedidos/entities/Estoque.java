@@ -14,6 +14,11 @@ public class Estoque {
 		this.lastUpdate = lastUpdate;
 		this.fk = fk;
 	}
+	public Estoque(String name, int quantity, int fk) {
+		this.name = name;
+		this.quantity = quantity;
+		this.fk = fk;
+	}
 	public String getName() {
 		return name;
 	}
