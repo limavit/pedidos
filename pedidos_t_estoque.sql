@@ -16,18 +16,22 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `t_item`
+-- Table structure for table `t_estoque`
 --
 
-DROP TABLE IF EXISTS `t_item`;
+DROP TABLE IF EXISTS `t_estoque`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `t_item` (
-  `id` mediumint NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) NOT NULL,
-  `tipo` varchar(20) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `t_estoque` (
+  `codEstoque` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `quantity` int NOT NULL,
+  `lastUpdate` datetime DEFAULT NULL,
+  `item_fk` int NOT NULL,
+  PRIMARY KEY (`codEstoque`),
+  KEY `item_fk` (`item_fk`),
+  CONSTRAINT `item_fk` FOREIGN KEY (`item_fk`) REFERENCES `t_item` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -39,4 +43,4 @@ CREATE TABLE `t_item` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-09 18:45:35
+-- Dump completed on 2023-08-11 11:18:50
