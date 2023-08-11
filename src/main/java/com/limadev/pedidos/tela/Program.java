@@ -36,6 +36,12 @@ public class Program {
 			System.out.println("Id 1: " + ingredienteDao.countId(1));
 			System.out.println("Id 10: " + ingredienteDao.countId(10));
 			List<Ingrediente> ingredientes = ingredienteDao.findAll();
+			Estoque estoque = estoqueDao.findById(4);
+			System.out.println("Nome: " + estoque.getName());
+			System.out.println("Quantidade: " + estoque.getQuantity());
+			System.out.println("Ultima atualizacao: " + estoque.getLastUpdate());
+			System.out.println("id do item: " + estoque.getFk());
+			
 			/*
 
 

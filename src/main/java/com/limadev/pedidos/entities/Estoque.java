@@ -1,14 +1,12 @@
 package com.limadev.pedidos.entities;
 
-import java.util.Date;
-
 public class Estoque {
 	private String name;
 	private int quantity;
-	private Date lastUpdate;
+	private String lastUpdate;
 	private int fk;
 	
-	public Estoque(String name, int quantity, Date lastUpdate, int fk) {
+	public Estoque(String name, int quantity, String lastUpdate, int fk) {
 		this.name = name;
 		this.quantity = quantity;
 		this.lastUpdate = lastUpdate;
@@ -31,10 +29,10 @@ public class Estoque {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	public Date getLastUpdate() {
+	public String getLastUpdate() {
 		return lastUpdate;
 	}
-	public void setLastUpdate(Date lastUpdate) {
+	public void setLastUpDate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
 	public int getFk() {
