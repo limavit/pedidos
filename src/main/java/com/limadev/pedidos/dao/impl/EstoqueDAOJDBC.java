@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.limadev.pedidos.dao.DAOFactory;
@@ -32,12 +33,15 @@ public class EstoqueDAOJDBC implements EstoqueDAO {
 	@Override
 	public void insert(Estoque obj) {
 		PreparedStatement st = null;
+		if (verificaExistencia(obj)) {
+			throw new DbException("Este item já existe, favor inserir outro. Ou atualizar existente.");
+		}
 		String sql = "INSERT INTO t_estoque(name, quantity, lastUpdate, item_fk) VALUES (?,?,current_timestamp(),?)";
 		IngredienteDAO ingredienteDao = DAOFactory.createIngredienteDao();
 		Integer cont = ingredienteDao.countId(obj.getFk());
 		try {
 			st = conn.prepareStatement(sql);
-			st.setString(1, obj.getName());
+			st.setString(1, obj.getName().toUpperCase());
 			st.setInt(2, obj.getQuantity());
 			if (cont > 0) {
 				st.setInt(3, obj.getFk());
@@ -50,6 +54,16 @@ public class EstoqueDAOJDBC implements EstoqueDAO {
 		} finally {
 			DB.closeStatement(st);
 		}
+	}
+
+	private boolean verificaExistencia(Estoque obj) {
+		
+		
+		if (findByName(obj.getName()) != null) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	@Override
@@ -98,11 +112,50 @@ public class EstoqueDAOJDBC implements EstoqueDAO {
 			DB.closeResultSet(rs);
 		}
 	}
+	public Estoque findByName(String name) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		String sql = "SELECT name, quantity, lastUpdate, item_fk FROM t_estoque WHERE name = ?";
+		try {
+			st = conn.prepareStatement(sql);
+			st.setString(1, name);
+			rs = st.executeQuery();
+			
+			if (rs.next()) {
+				Estoque est = instanciateEstoque(rs);
+				return est;
+			}
+			return null;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+			
+		}finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
+	}
 
 	@Override
 	public List<Estoque> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		String sql = "SELECT name, quantity, lastUpdate, item_fk FROM t_estoque";
+		List<Estoque> estoques = new ArrayList<>();
+		try {
+			st = conn.prepareStatement(sql);
+			rs = st.executeQuery();
+			while(rs.next()) {
+				Estoque estoque = instanciateEstoque(rs);
+				estoques.add(estoque);
+			}
+			return estoques;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		
+		}finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 	private Estoque instanciateEstoque(ResultSet rs) throws SQLException{
 		Estoque obj = new Estoque(null, 0, null, 0);

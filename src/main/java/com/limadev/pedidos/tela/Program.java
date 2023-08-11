@@ -21,18 +21,20 @@ public class Program {
 			System.out.println("Cadastros: ");
 			IngredienteDAO ingredienteDao = DAOFactory.createIngredienteDao();
 			EstoqueDAO estoqueDao = DAOFactory.createEstoqueDao();
+			
 			//java.util.Date dataUtil = new java.util.Date();
 			//java.sql.Date dataSql = new java.sql.Date(dataUtil.getTime());
 			//System.out.println(dataSql);
 			
-			//ingredienteDao.insert(new Ingrediente("ALFACE", "INGREDIENTE"));
+			//ingredienteDao.insert(new Ingrediente("PAO", "INGREDIENTE"));
+			estoqueDao.insert(new Estoque("pao", 0, 7));
 			
 			//int tela;
 
 			//System.out.println("Para Cadastrar ingrediente(1), produto(2)");
 			//tela = sc.nextInt();
 			//String nameIngrediente;
-			
+			/*
 			System.out.println("Id 1: " + ingredienteDao.countId(1));
 			System.out.println("Id 10: " + ingredienteDao.countId(10));
 			List<Ingrediente> ingredientes = ingredienteDao.findAll();
@@ -46,7 +48,11 @@ public class Program {
 			System.out.println("Quantidade: " + estoque.getQuantity());
 			System.out.println("Ultima atualizacao: " + estoque.getLastUpdate());
 			System.out.println("id do item: " + estoque.getFk());
-			/*
+			List<Estoque> estoques = estoqueDao.findAll();
+			for (Estoque estoque2 : estoques) {
+				System.out.println("Name: " + estoque2.getName() + "\t Quantidade: " + estoque2.getQuantity() + "\t Ultima atualização: " + estoque2.getLastUpdate() + "\t Id do item: " + estoque2.getFk());
+			}
+			
 
 
 			
