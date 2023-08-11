@@ -32,7 +32,7 @@ public class Program {
 			//System.out.println("Para Cadastrar ingrediente(1), produto(2)");
 			//tela = sc.nextInt();
 			//String nameIngrediente;
-			estoqueDao.insert(new Estoque("ALFACE", 10 , 2));//coloquei uma data aleatória a regra está no controller
+			
 			System.out.println("Id 1: " + ingredienteDao.countId(1));
 			System.out.println("Id 10: " + ingredienteDao.countId(10));
 			List<Ingrediente> ingredientes = ingredienteDao.findAll();
@@ -41,7 +41,11 @@ public class Program {
 			System.out.println("Quantidade: " + estoque.getQuantity());
 			System.out.println("Ultima atualizacao: " + estoque.getLastUpdate());
 			System.out.println("id do item: " + estoque.getFk());
-			
+			estoqueDao.update(4, 50);
+			System.out.println("Nome: " + estoque.getName());
+			System.out.println("Quantidade: " + estoque.getQuantity());
+			System.out.println("Ultima atualizacao: " + estoque.getLastUpdate());
+			System.out.println("id do item: " + estoque.getFk());
 			/*
 
 

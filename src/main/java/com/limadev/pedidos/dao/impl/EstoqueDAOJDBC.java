@@ -61,6 +61,8 @@ public class EstoqueDAOJDBC implements EstoqueDAO {
 			st.setInt(1, newQuantity);
 			st.setInt(2, codEstoque);
 			int rowsAffected = st.executeUpdate();
+			System.out.println("Codigo: " + codEstoque);
+			System.out.println("Nova quantidade: " + newQuantity);
 			if (rowsAffected == 0) {
 				throw new DbException("Código não encontrado no estoque");
 			}
@@ -82,6 +84,7 @@ public class EstoqueDAOJDBC implements EstoqueDAO {
 			st = conn.prepareStatement(sql);
 			st.setInt(1, id);
 			rs = st.executeQuery();
+			
 			if (rs.next()) {
 				Estoque est = instanciateEstoque(rs);
 				return est;
@@ -105,8 +108,6 @@ public class EstoqueDAOJDBC implements EstoqueDAO {
 		Estoque obj = new Estoque(null, 0, null, 0);
 		obj.setName(rs.getString("name"));
 		obj.setQuantity(rs.getInt("quantity"));
-		String dateStr = rs.getString("lastUpdate");
-		System.out.println("Teste dateStr : " + dateStr);
 		obj.setLastUpDate(rs.getString("lastUpdate"));
 		obj.setFk(rs.getInt("item_fk"));
 		return obj;
